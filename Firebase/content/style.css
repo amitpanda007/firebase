@@ -1,0 +1,92 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(fonts/Material-Design-Icons.woff);
+}
+
+.error{
+    color: #FF4081;
+    font-family: myFirstFont;
+}
+
+.login{
+    width: 250px;
+    height: 250px;
+    background-color: #3F51B5;
+    color: #FFFFFF;
+    font-family: myFirstFont;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-left: 80px;
+
+    margin: auto;
+}
+
+.logout{
+    background-color: #F44336;
+    color: #FFFFFF;
+}
+
+.online{
+    color: #00E676;
+}
+
+.box{
+    width: 300px;
+    height: 400px;
+    border: 5px solid #673AB7;
+    position: absolute;
+    left: 70%;
+    top: 10%;
+}
+
+.box p {
+    padding-left: 100px;
+    font-family: myFirstFont;
+    font-size: 20px;
+    font-weight: 400;
+    color: #AD1457;
+}
+
+.box a {
+    text-decoration: none;
+}
+
+.overlay{
+    z-index: 2;
+    background: #000;
+    position: fixed;
+    opacity: .6;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+}
+
+.overlayData{
+    width: 200px;
+    height: 200px;
+    background-color: #3F51B5;
+    color: #FFFFFF;
+    font-family: myFirstFont;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+}
+
+.free{
+    color: #00E676;
+}
+
+.busy{
+    color: #F44336;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<!-- AngularJS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+
+<!-- Firebase -->
+<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
+
+<!-- My Script -->
+<script src="app.js"></script>
+
+<!-- My Style Sheet -->
+<link href="style.css" rel="stylesheet">
+    
+</head>
+<body ng-controller="todoController">
+
+<div ng-hide="loggedIn" class="login">
+<h2>User Login</h2>
+<div>
+    <label ng-show="loginFailed" class="error">Invalid Username or Password</label>
+    <label ng-show="signupFailed" class="error">Invalid Entry or Username Exist</label></br>
+    <input type="text" placeholder="Username" ng-model="userNameInput"/></br></br>
+    <input type="password" placeholder="Password" ng-model="passWordInput"/></br></br>
+    <button ng-click="login(userNameInput,passWordInput)">Login</button>
+<button ng-click="signup(userNameInput,passWordInput)">Sign Up</button>
+</div></br>
+</div>
+
+<div ng-show="loggedIn">
+<h2>Todo List : {{curUser}}</h2>
+    <label class="online">Now Online</label>
+    <button ng-click="logout(curUser)" class="logout">Logout</button></br></br>
+<div ng-repeat="todo in todos">
+    <div ng-if="todo.currentUser  == curUser">
+        <input type="checkbox" ng-model="todo.todoTask.done" ng-change="taskComplete($index)"/>
+        <label>{{todo.todoTask.task}}</label>
+        <button ng-click="deteteTask($index)">Delete</button>
+    </div>
+</div></br>
+
+<form ng-submit="todoSubmit()">
+    <input type="text" ng-model="newTask"/>
+    <input type="submit"/>
+</form>
+
+    <div class="box">
+        <p>Users Online</p>
+        <div ng-repeat="users in userSession">
+            <div ng-if="users.loginStatus == true && users.$id != curUser">
+                <label> --- </label>
+                <a ng-click="userClicked(curUser,$index)" href="">{{users.$id}}
+                <label ng-hide="users.connectStatus" class="free">Free</label>
+                <label ng-show="users.connectStatus" class="busy">Busy</label>
+                </a>
+            </div>
+        </div>          
+    </div>
+
+    <div ng-repeat="connectstat in userSession">
+        <div ng-if="connectstat.$id == curUser">
+            <div ng-show="connectstat.connectStatus" class="overlay">
+                <div class="overlayData">
+                    <p>{{connectstat.userRequestFrom}} Wants To Play</p>
+                    <button>Yes</button>
+                    <button ng-click="cancelPlay(curUser)">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
